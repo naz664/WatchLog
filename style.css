@@ -1,0 +1,1141 @@
+:root {
+    --bg: #0b0b0d;
+    --surface: #151518;
+    --surface2: #1d1d21;
+    --text: #f5f5f7;
+    --muted: #a6a6ad;
+    --border: #303038;
+    --primary: #ff1744;
+    --primary2: #ff4569;
+    --shadow: 0 8px 30px #0007;
+    --input: #111114
+}
+
+:root[data-theme="light"] {
+    --bg: #f5f6f8;
+    --surface: #fff;
+    --surface2: #f0f1f4;
+    --text: #18181b;
+    --muted: #62636b;
+    --border: #dedee5;
+    --primary: #d50032;
+    --primary2: #ff1744;
+    --shadow: 0 8px 28px #0002;
+    --input: #fff
+}
+
+* {
+    box-sizing: border-box
+}
+
+html {
+    scroll-behavior: smooth
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: Inter, Roboto, "Segoe UI", Arial, sans-serif;
+    transition: background .2s, color .2s
+}
+
+header {
+    height: 72px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5.5%;
+    position: sticky;
+    top: 0;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(18px);
+    z-index: 10
+}
+
+.brand {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 22px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 8px
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 5px
+}
+
+nav a {
+    color: var(--muted);
+    text-decoration: none;
+    padding: 11px 14px;
+    border-radius: 12px
+}
+
+nav a:hover {
+    color: var(--text);
+    background: var(--surface2)
+}
+
+.themeToggle {
+    width: auto;
+    height: 38px;
+    border-radius: 10px;
+    padding: 0 10px;
+    background: transparent;
+    border: 0;
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 16px
+}
+
+.themeToggle:hover {
+    background: var(--surface2);
+    color: var(--text)
+}
+
+.navSearch {
+    width: min(430px, 38vw);
+    height: 42px;
+    display: flex;
+    align-items: center;
+    background: var(--input);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-left: auto;
+    margin-right: 14px
+}
+
+.navSearch span {
+    padding-left: 12px;
+    color: var(--muted);
+    font-size: 19px
+}
+
+.navSearch input {
+    flex: 1;
+    min-width: 0;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    color: var(--text);
+    padding: 10px 9px;
+    font-size: 14px
+}
+
+.navSearch button {
+    height: 100%;
+    padding: 0 14px;
+    background: var(--primary);
+    border-radius: 0
+}
+
+.navSearch button:hover {
+    background: var(--primary2)
+}
+
+.page {
+    max-width: 1400px;
+    margin: auto;
+    padding: 52px 7%
+}
+
+.hidden {
+    display: none
+}
+
+.hero {
+    min-height: calc(100vh - 72px);
+    padding-top: 45px
+}
+
+.eyebrow {
+    color: var(--primary);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    margin-top: 15px
+}
+
+.hero h1 {
+    font-size: clamp(48px, 7vw, 76px);
+    line-height: .98;
+    margin: 20px 0
+}
+
+.hero>p {
+    color: var(--muted);
+    font-size: 18px
+}
+
+.search,
+.librarySearchWrap {
+    display: flex;
+    align-items: center
+}
+
+.search {
+    max-width: 880px;
+    margin: 34px 0 26px;
+    background: var(--input);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--shadow)
+}
+
+.search input,
+.librarySearchWrap input,
+.settingsBox input {
+    flex: 1;
+    min-width: 0;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    color: var(--text);
+    padding: 17px;
+    font-size: 16px
+}
+
+.search input::placeholder,
+.librarySearchWrap input::placeholder {
+    color: var(--muted)
+}
+
+.search button {
+    border-radius: 0;
+    padding: 0 26px;
+    height: 56px
+}
+
+.search button,
+button {
+    border: 0;
+    background: var(--primary);
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer
+}
+
+.search button:hover,
+button:hover {
+    background: var(--primary2)
+}
+
+.secondary {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text)
+}
+
+.danger {
+    background: #9b0027
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 20px;
+    margin-top: 28px
+}
+
+.card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: .18s;
+    box-shadow: 0 2px 10px #0001
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+    border-color: #666
+}
+
+.poster {
+    aspect-ratio: 2/3;
+    background: var(--surface2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    overflow: hidden;
+    position: relative
+}
+
+.poster img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block
+}
+
+.cardBody {
+    padding: 14px
+}
+
+.card h3 {
+    margin: 0 0 8px;
+    font-size: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
+.meta,
+.muted {
+    color: var(--muted);
+    font-size: 13px
+}
+
+.rating {
+    color: #ffc400;
+    margin: 9px 0
+}
+
+.date {
+    color: var(--muted);
+    font-size: 12px;
+    margin: 7px 0
+}
+
+.tag {
+    display: inline-block;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    padding: 5px 8px;
+    border-radius: 7px;
+    font-size: 10px
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 34px
+}
+
+.stat,
+.libraryStat {
+    border: 1px solid var(--border);
+    background: var(--surface);
+    border-radius: 16px;
+    padding: 22px;
+    box-shadow: 0 2px 12px #0001
+}
+
+.stat b {
+    font-size: 30px
+}
+
+.filters {
+    display: flex;
+    gap: 10px;
+    margin-top: 22px;
+    flex-wrap: wrap
+}
+
+.filters select {
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 14px;
+    outline: 0
+}
+
+.libraryToolbar {
+    margin-top: 25px
+}
+
+.librarySearchWrap {
+    max-width: 650px;
+    background: var(--input);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden
+}
+
+.librarySearchWrap span {
+    padding-left: 15px;
+    color: var(--muted);
+    font-size: 21px
+}
+
+.filterHint {
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 14px
+}
+
+.libraryStats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin: 28px 0 8px
+}
+
+.libraryStat b {
+    display: block;
+    font-size: 30px;
+    line-height: 1.1
+}
+
+.libraryStat span {
+    display: block;
+    color: var(--muted);
+    font-size: 11px;
+    letter-spacing: .7px;
+    margin-top: 6px
+}
+
+.settingsBox {
+    max-width: 800px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 25px;
+    box-shadow: var(--shadow)
+}
+
+.settingsBox input {
+    width: 100%;
+    border: 1px solid var(--border);
+    background: var(--input);
+    border-radius: 10px;
+    margin: 10px 0
+}
+
+.row {
+    display: flex;
+    gap: 10px;
+    margin: 10px 0
+}
+
+.fileBtn {
+    display: inline-block;
+    padding: 13px 18px;
+    border-radius: 10px;
+    margin: 10px 0;
+    cursor: pointer;
+    background: var(--surface2)
+}
+
+.fileBtn input {
+    display: none
+}
+
+.attribution {
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 35px
+}
+
+.modalBack {
+    position: fixed;
+    inset: 0;
+    background: #000b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 20
+}
+
+.modal {
+    position: relative;
+    width: min(900px, 100%);
+    max-height: 92vh;
+    overflow: auto;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 28px;
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 28px;
+    box-shadow: var(--shadow)
+}
+
+.modal .poster {
+    border-radius: 12px
+}
+
+.modal h2 {
+    margin: 0 0 7px;
+    font-size: 34px
+}
+
+.close {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    background: none;
+    color: var(--muted);
+    font-size: 28px;
+    padding: 4px 10px
+}
+
+.field {
+    margin: 18px 0
+}
+
+.field label {
+    display: block;
+    color: var(--muted);
+    font-size: 12px;
+    margin-bottom: 8px
+}
+
+.field input,
+.field select,
+.field textarea {
+    width: 100%;
+    background: var(--input);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 13px
+}
+
+.field textarea {
+    min-height: 90px
+}
+
+.dateRange {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px
+}
+
+.modalActions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px
+}
+
+.modalActions button {
+    flex: 1
+}
+
+.modalActions .delete {
+    background: #750909
+}
+
+.save {
+    width: 100%;
+    margin-top: 10px
+}
+
+.empty {
+    color: var(--muted);
+    padding: 35px 0
+}
+
+.identifyBox {
+    background: var(--surface2) !important;
+    border: 1px solid var(--border) !important;
+    color: var(--text)
+}
+
+.identifyBox input {
+    background: var(--input) !important;
+    color: var(--text) !important;
+    border-color: var(--border) !important
+}
+
+.identifyBox>label {
+    color: var(--text)
+}
+
+.optional {
+    font-size: 11px;
+    color: var(--muted);
+    font-weight: 500
+}
+
+.imdbBadge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: #f5c518;
+    color: #111;
+    padding: 5px 7px;
+    border-radius: 5px;
+    font-size: 9px;
+    font-weight: 800
+}
+
+.tmdbBadge {
+    left: 8px;
+    position: absolute;
+    top: 8px;
+    background: #00a9e8;
+    color: #05212a;
+    padding: 5px 7px;
+    border-radius: 5px;
+    font-size: 9px;
+    font-weight: 800
+}
+
+.idSources {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: 12px
+}
+
+.idChip {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 6px 8px;
+    color: var(--muted);
+    font-size: 11px
+}
+
+@media(max-width:700px) {
+    .navSearch {
+        position: absolute;
+        top: 72px;
+        left: 5%;
+        right: 5%;
+        width: auto;
+        margin: 8px 0
+    }
+
+    .hero {
+        padding-top: 70px
+    }
+
+    .hero h1 {
+        font-size: 50px
+    }
+
+    .stats,
+    .libraryStats {
+        grid-template-columns: 1fr
+    }
+
+    .modal {
+        grid-template-columns: 1fr
+    }
+
+    .modal>.poster {
+        max-width: 220px
+    }
+
+    .dateRange {
+        grid-template-columns: 1fr
+    }
+
+    nav {
+        gap: 0
+    }
+
+    nav a {
+        padding: 9px 7px
+    }
+
+    .search button {
+        padding: 0 17px
+    }
+}
+
+.posterActions {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 8px
+}
+
+.posterActions button {
+    min-height: 44px;
+    border-radius: 10px
+}
+
+.posterActions .imdbPoster {
+    background: #f5c518;
+    color: #111
+}
+
+.posterActions .imdbPoster:hover {
+    background: #ffd84a
+}
+
+.modalActions {
+    margin-top: 12px
+}
+
+.optional {
+    color: var(--muted);
+    font-weight: 500
+}
+
+@media(max-width:700px) {
+    .posterActions {
+        grid-template-columns: 1fr
+    }
+
+    .modal h2 {
+        font-size: 28px
+    }
+}
+
+/* v15 UI refinements */
+.navSearch {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    width: min(460px, 42vw);
+    z-index: 2
+}
+
+.modalActions {
+    display: flex;
+    gap: 12px;
+    margin-top: 14px
+}
+
+.modalActions button,
+.posterActions button,
+.settingsBox button,
+.fileBtn {
+    border-radius: 16px !important;
+    padding: 13px 18px;
+    min-height: 46px
+}
+
+.modalActions .save {
+    margin-top: 0
+}
+
+.modalActions .delete {
+    background: #750909
+}
+
+.modalActions .delete:hover {
+    background: #990b0b
+}
+
+.posterActions {
+    margin-top: 14px
+}
+
+@media(max-width:900px) {
+    .navSearch {
+        width: min(420px, 46vw)
+    }
+}
+
+@media(max-width:700px) {
+    .navSearch {
+        position: absolute;
+        left: 5%;
+        right: 5%;
+        transform: none;
+        width: auto;
+        top: 72px;
+        margin: 8px 0
+    }
+
+    .hero {
+        padding-top: 70px
+    }
+}
+
+
+/* IMDb Identify match picker */
+.idRow {
+    display: flex;
+    gap: 10px;
+    align-items: stretch
+}
+
+.idRow input {
+    flex: 1;
+    min-width: 0
+}
+
+.identifyBtn {
+    border: 0;
+    border-radius: 14px;
+    padding: 0 22px;
+    background: #ff1744;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer
+}
+
+.identifyBtn:disabled {
+    opacity: .6;
+    cursor: wait
+}
+
+.hint {
+    display: block;
+    margin-top: 8px;
+    color: #8e8e96;
+    font-size: .82rem
+}
+
+.matchBack {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background: rgba(0, 0, 0, .72);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px
+}
+
+.matchDialog {
+    width: min(760px, 94vw);
+    max-height: 82vh;
+    overflow: auto;
+    background: #17171a;
+    border: 1px solid #303036;
+    border-radius: 22px;
+    box-shadow: 0 24px 80px rgba(0, 0, 0, .55);
+    color: #f5f5f7
+}
+
+.matchHeader {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 22px;
+    background: #17171a;
+    border-bottom: 1px solid #303036
+}
+
+.matchHeader strong {
+    display: block;
+    font-size: 1.15rem
+}
+
+.matchHeader small {
+    display: block;
+    margin-top: 4px;
+    color: #9b9ba3
+}
+
+.matchHeader button {
+    border: 0;
+    background: transparent;
+    color: #ddd;
+    font-size: 28px;
+    cursor: pointer
+}
+
+.matchList {
+    padding: 14px
+}
+
+.matchItem {
+    display: flex;
+    gap: 16px;
+    padding: 14px;
+    border: 1px solid #303036;
+    border-radius: 18px;
+    background: #1d1d21;
+    margin-bottom: 12px
+}
+
+.matchPoster {
+    width: 92px;
+    height: 132px;
+    flex: 0 0 92px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #242428;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #8d8d96;
+    text-align: center
+}
+
+.matchPoster img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover
+}
+
+.matchInfo {
+    min-width: 0
+}
+
+.matchInfo h3 {
+    margin: 2px 0 6px;
+    font-size: 1.05rem
+}
+
+.matchInfo>div {
+    color: #a8a8b0;
+    font-size: .88rem
+}
+
+.matchInfo p {
+    color: #92929b;
+    font-size: .84rem;
+    line-height: 1.45;
+    margin: 9px 0
+}
+
+.matchInfo button {
+    border: 0;
+    border-radius: 13px;
+    padding: 10px 15px;
+    background: #ff1744;
+    color: white;
+    font-weight: 700;
+    cursor: pointer
+}
+
+.empty {
+    padding: 28px;
+    text-align: center;
+    color: #999
+}
+
+/* IMDb identification results */
+.imdbMatchModal {
+    position: relative;
+    width: min(760px, 100%);
+    max-height: 86vh;
+    overflow: auto;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 28px;
+    box-shadow: var(--shadow)
+}
+
+.imdbMatchModal h2 {
+    margin: 0 35px 5px 0;
+    font-size: 28px
+}
+
+.matchSubtitle {
+    color: var(--muted);
+    margin: 0 0 20px
+}
+
+.imdbMatchList {
+    display: grid;
+    gap: 10px
+}
+
+.imdbMatch {
+    width: 100%;
+    display: flex;
+    gap: 15px;
+    text-align: left;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: 16px;
+    padding: 10px;
+    transition: .15s
+}
+
+.imdbMatch:hover {
+    background: var(--input);
+    border-color: #666;
+    transform: translateY(-1px)
+}
+
+.imdbMatchPoster {
+    width: 64px;
+    height: 92px;
+    flex: none;
+    border-radius: 9px;
+    overflow: hidden;
+    background: var(--input);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    font-size: 10px
+}
+
+.imdbMatchPoster img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover
+}
+
+.imdbMatchInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 7px;
+    min-width: 0
+}
+
+.imdbMatchInfo strong {
+    font-size: 16px;
+    white-space: normal
+}
+
+.imdbMatchInfo span,
+.imdbMatchInfo small {
+    color: var(--muted);
+    font-size: 12px
+}
+
+@media(max-width:700px) {
+    .imdbMatchModal {
+        padding: 20px;
+        border-radius: 18px
+    }
+
+    .imdbMatchPoster {
+        width: 54px;
+        height: 78px
+    }
+}
+
+/* v20: editable title/file-name field + green save action */
+.modalActions .save {
+    background: #16a34a !important;
+    color: #fff !important;
+    border-radius: 18px !important
+}
+
+.modalActions .save:hover {
+    background: #22c55e !important
+}
+
+#modalRoot .field input#mmTitle {
+    font-size: 15px
+}
+
+/* Search result Add button */
+.searchResultCard {
+    cursor: default
+}
+
+.searchResultCard:hover {
+    transform: translateY(-3px)
+}
+
+.searchAddBtn {
+    display: block;
+    width: 100%;
+    margin-top: 12px;
+    padding: 10px 14px;
+    min-height: 42px;
+    border-radius: 12px;
+    border: 1px solid var(--primary);
+    background: var(--primary);
+    color: #fff;
+    font-weight: 800;
+    font-size: 13px;
+    line-height: 1;
+    transition: transform .15s, background .15s, box-shadow .15s
+}
+
+.searchAddBtn:hover {
+    background: var(--primary2);
+    box-shadow: 0 6px 18px rgba(255, 23, 68, .22);
+    transform: translateY(-1px)
+}
+
+.searchAddBtn:disabled {
+    opacity: .65;
+    cursor: wait;
+    transform: none;
+    box-shadow: none
+}
+
+.searchResultCard .cardBody {
+    padding: 14px
+}
+
+/* Cloud Sync */
+.cloudConfig {
+    display: grid;
+    gap: 8px;
+    margin: 12px 0 16px
+}
+
+.cloudConfig label {
+    color: var(--muted);
+    font-size: 12px
+}
+
+.cloudConfig input,
+.cloudAuthBox input {
+    width: 100%;
+    background: var(--input);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 13px;
+    margin: 0 0 8px;
+    outline: 0
+}
+
+.cloudAuthBox {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 16px;
+    margin-top: 12px
+}
+
+.cloudAuthBox .row {
+    flex-wrap: wrap
+}
+
+.cloudAuthBox button,
+.cloudConfig button {
+    border-radius: 12px !important;
+    padding: 12px 16px;
+    min-height: 44px
+}
+
+.cloudStatus {
+    min-height: 22px;
+    margin: 12px 0;
+    font-size: 13px;
+    color: #69d18b
+}
+
+.cloudUser {
+    font-weight: 600
+}
+
+.cloudUser.cloudSignedIn {
+    color: #69d18b
+}
+
+button:disabled {
+    opacity: .5;
+    cursor: not-allowed
+}
+
+.cloudStatus.error {
+    color: #ff788f
+}
+
+.cloudNote {
+    font-size: 12px;
+    line-height: 1.5
+}

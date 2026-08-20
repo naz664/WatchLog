@@ -1,0 +1,152 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>WatchLog</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header><a class="brand" href="#home" onclick="goHome(event)">🎬 <span>WatchLog</span></a>
+        <div id="homeNavSearch" class="navSearch"><span>⌕</span><input id="searchInput"
+                placeholder="Search movies & series"><button id="searchBtn" title="Search">Search</button></div>
+        <nav><a href="#home">Home</a><a href="#library">Library</a><a href="#history">History</a><a
+                href="#settings">⚙</a><button id="themeToggle" class="themeToggle"
+                title="Switch to light mode">☀</button></nav>
+    </header>
+    <main>
+        <section id="homePage" class="page">
+            <div class="hero">
+                <div class="eyebrow">YOUR PERSONAL WATCH TRACKER</div>
+                <h1>What are<br>you watching?</h1>
+                <p>Search, save, rate and keep your complete watch history synced across your devices.</p>
+                <div id="searchMessage"></div>
+                <div id="searchResults" class="grid"></div>
+                <div id="stats" class="stats"></div>
+            </div>
+        </section>
+        <section id="libraryPage" class="page hidden">
+            <h2>My Library</h2>
+            <p>Your saved movies and series.</p>
+            <div class="libraryToolbar">
+                <div class="librarySearchWrap"><span>⌕</span><input id="librarySearch"
+                        placeholder="Search your library..."></div>
+            </div>
+            <div class="filterHint">Genres are populated like a media library. Posters are fetched automatically in the
+                background.</div>
+            <div class="filters">
+                <select id="typeFilter">
+                    <option value="all">All types</option>
+                    <option value="movie">Movies</option>
+                    <option value="tv">Series</option>
+                </select>
+                <select id="genreFilter">
+                    <option value="all">All genres</option>
+                </select>
+                <select id="yearFilter">
+                    <option value="all">All years</option>
+                </select>
+                <select id="monthFilter">
+                    <option value="all">All months</option>
+                </select>
+                <select id="sortFilter">
+                    <option value="recent">Recently added</option>
+                    <option value="watch-new">My watch date: newest</option>
+                    <option value="watch-old">My watch date: oldest</option>
+                    <option value="release-new">Release date: newest</option>
+                    <option value="release-old">Release date: oldest</option>
+                    <option value="rating-high">My rating: high → low</option>
+                    <option value="rating-low">My rating: low → high</option>
+                    <option value="rating-8">My rating: 8+</option>
+                    <option value="rating-7">My rating: 7+</option>
+                    <option value="rating-6">My rating: 6+</option>
+                    <option value="title">Title A → Z</option>
+                </select>
+            </div>
+            <div id="libraryGrid" class="grid"></div>
+        </section>
+        <section id="historyPage" class="page hidden">
+            <h2>Watch History</h2>
+            <p>Your recently watched titles, newest watch date first.</p>
+            <div class="filters historyFilters"><select id="historyYearFilter">
+                    <option value="all">All years</option>
+                </select><select id="historyMonthFilter">
+                    <option value="all">All months</option>
+                </select></div>
+            <div id="historyGrid" class="grid"></div>
+        </section>
+        <section id="settingsPage" class="page hidden">
+            <h2>Settings</h2>
+            <div class="settingsBox">
+                <h3>TMDB API key</h3>
+                <p class="muted">Stored only in this browser.</p><input id="apiKeyInput" type="password"
+                    placeholder="Paste your TMDB API key">
+                <div class="row"><button id="saveKey">Save Key</button><button id="testKey" class="secondary">Test
+                        Key</button></div>
+                <div id="keyStatus"></div>
+                <hr>
+                <h3>☁ Cloud Sync</h3>
+                <p id="cloudConfigHint" class="muted">Enter your Supabase Project URL and Publishable Key, then save the
+                    connection.</p>
+                <div class="cloudConfig">
+                    <label>Supabase Project URL</label>
+                    <input id="supabaseUrl" type="url" placeholder="https://your-project.supabase.co"
+                        autocomplete="off">
+                    <label>Supabase Publishable Key</label>
+                    <input id="supabaseKey" type="password" placeholder="sb_publishable_..." autocomplete="off">
+                    <button id="saveSupabase">Save Connection</button>
+                </div>
+                <div id="cloudAuthBox" class="cloudAuthBox hidden">
+                    <p id="cloudUser" class="muted cloudUser" aria-live="polite">Not signed in</p>
+                    <input id="cloudEmail" type="email" placeholder="Email" autocomplete="username">
+                    <input id="cloudPassword" type="password" placeholder="Password" autocomplete="current-password">
+                    <div class="row">
+                        <button id="cloudSignIn">Sign In</button>
+                        <button id="cloudSignUp" class="secondary">Create Account</button>
+                        <button id="cloudSignOut" class="secondary">Sign Out</button>
+                    </div>
+                    <div class="row">
+                        <button id="cloudSyncNow" class="secondary">Sync Now</button>
+                        <button id="cloudUploadLocal" class="secondary">Upload Local Data</button>
+                    </div>
+                </div>
+                <div id="cloudStatus" class="cloudStatus"></div>
+                <p class="muted cloudNote">Your WatchLog library is stored in Supabase and synced between devices.
+                    LocalStorage remains as an offline cache. Use the same account on every device.</p>
+
+                <hr>
+                <h3>Original watch-history sync</h3>
+                <p class="muted">Repairs imported ratings/dates, keeps all existing titles, and fetches missing TMDB
+                    posters in the background.</p><button id="syncHistory">Repair &amp; Fetch TMDB Data</button><button
+                    id="fetchPosters" class="secondary">Retry Missing Posters</button><button id="exportData"
+                    class="secondary">Export Data</button><label class="fileBtn secondary">Import Data<input
+                        id="importData" type="file" accept=".json"></label>
+                <div class="keep-import-box">
+                    <h3>Import Google Keep Notes</h3>
+                    <p>Import multiple Google Keep exports. Existing WatchLog titles are never replaced or modified;
+                        only new titles are added.</p>
+                    <label class="file-button">Import Keep Files<input id="keepImportInput" type="file"
+                            accept=".txt,.html,.htm,.json,text/plain,text/html,application/json" multiple
+                            hidden></label>
+                    <div class="row"><button id="repairKeep" class="secondary">Repair Imported Ratings / Dates</button>
+                    </div>
+                    <div id="keepImportStatus" class="import-status"></div>
+                </div><button id="clearData" class="danger">Delete All Local Data</button>
+                <p class="muted cloudNote">Deleting local data does not delete your cloud library. If you are signed in,
+                    use Export Data before making major changes.</p>
+                <p id="syncStatus"></p>
+                <p class="attribution">This product uses the TMDB API but is not endorsed or certified by TMDB. Movie
+                    and TV poster data provided by TMDB.</p>
+            </div>
+        </section>
+    </main>
+    <div id="modalRoot"></div>
+    <div id="imdbMatchRoot"></div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="cloud-sync.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
